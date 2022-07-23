@@ -10,7 +10,6 @@ services:
     environment:
       - WEBPASSWORD=${WEBPASSWORD}
       - TZ=${TZ}
-      - FTLCONF_REPLY_ADDR4=${HOST_IP}
       - DNSSEC=true
       - PIHOLE_DNS_=9.9.9.9;1.1.1.1;2620:fe::fe;2606:4700:4700::1111
     volumes:

@@ -2,15 +2,17 @@ version: "3"
 
 services:
   pihole:
-    image: jacklul/pihole:latest # https://github.com/jacklul/pihole-updatelists#container-configuration
+    image: jacklul/pihole:latest # https://github.com/jacklul/pihole-updatelists https://github.com/pi-hole/docker-pi-hole
     container_name: pihole
     restart: unless-stopped
     cap_add:
       - NET_ADMIN
     environment:
       - WEBPASSWORD=${WEBPASSWORD}
-      - ServerIP=192.168.1.230
       - TZ=${TZ}
+      - FTLCONF_REPLY_ADDR4=${HOST_IP}
+      - DNSSEC=true
+      - PIHOLE_DNS_=9.9.9.9;1.1.1.1;2620:fe::fe;2606:4700:4700::1111
     volumes:
       - ./etc-pihole/:/etc/pihole/
       - ./etc-dnsmasq.d/:/etc/dnsmasq.d/

@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  pihole:
+    image: jacklul/pihole:latest # https://github.com/jacklul/pihole-updatelists#container-configuration
+    container_name: pihole
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - WEBPASSWORD=${WEBPASSWORD}
+      - ServerIP=192.168.1.230
+      - TZ=${TZ}
+    volumes:
+      - ./etc-pihole/:/etc/pihole/
+      - ./etc-dnsmasq.d/:/etc/dnsmasq.d/
+      - ./etc-pihole-updatelists/:/etc/pihole-updatelists/
+    ports:
+      - 53:53/tcp
+      - 53:53/udp
+      - 67:67/udp
+      - 80:80/tcp
+
+  portainer:
+    image: portainer/portainer-ce:latest # https://docs.portainer.io/ 
+    container_name: portainer
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./portainer-data:/data
+    ports:
+      - 8000:8000
+      - 9443:9443

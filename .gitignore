@@ -1,0 +1,9 @@
+/etc-dnsmasq.d/*
+/etc-pihole/*
+/etc-pihole-updatelists/*
+/portainer-data/*
+/.env
+
+!/docker-compose.yml
+!/etc-pihole-updatelists/pihole-updatelists.conf
+

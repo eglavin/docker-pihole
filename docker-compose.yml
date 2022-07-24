@@ -16,6 +16,7 @@ services:
       - ./etc-pihole/:/etc/pihole/
       - ./etc-dnsmasq.d/:/etc/dnsmasq.d/
       - ./etc-pihole-updatelists/:/etc/pihole-updatelists/
+    network_mode: host
     ports:
       - 53:53/tcp
       - 53:53/udp
@@ -23,7 +24,7 @@ services:
       - 80:80/tcp
 
   portainer:
-    image: portainer/portainer-ce:latest # https://docs.portainer.io/ 
+    image: portainer/portainer-ce:latest # https://docs.portainer.io/
     container_name: portainer
     restart: unless-stopped
     security_opt:

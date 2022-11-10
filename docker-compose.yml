@@ -16,7 +16,6 @@ services:
       - ./etc-pihole/:/etc/pihole/
       - ./etc-dnsmasq.d/:/etc/dnsmasq.d/
       - ./etc-pihole-updatelists/:/etc/pihole-updatelists/
-    network_mode: host
     ports:
       - 53:53/tcp
       - 53:53/udp
